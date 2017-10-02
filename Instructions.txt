@@ -1,0 +1,53 @@
+ 
+Here’s the writeup on the programming exercise.  The GUI’s should be in WPF .  Document any assumptions you make etc.
+Also, if you have any questions let me know. I wouldn’t worry about cases like crossing bid/ask markets. Expect that the bid prices
+Will always be less than the ask prices.
+ 
+ 
+Description
+ 
+ 
+The goal of this project to write a simple market display GUI, which responds to
+prices and order messages and displays them as shown in the accompanied graphic.
+ 
+- The program should open a socket and listen for connections.
+- Popup GUI for chosing IP address & port
+- Clients (in the case our test program) will connect to the socket
+  and send order and price messages. The format of the messages is follows:
+  Its a line of characters ending with a newline and within each line the columns/fields
+  are separated by a ":".
+ 
+price messages have the following format. 
+ 
+messagetype:SYMBOL:Action:BidAskType:PRICE:QTY
+ 
+for example
+ 
+PRICE:IBM:ADD:BID:100:23
+PRICE:IBM:ADD:ASK:101:34
+ 
+PRICE:IBM:MODIFY:ASK:101:67
+PRICE:IBM:DELETE:ASK:101:0
+ 
+3 types of actions are possible:
+ 
+ADD, DELETE and MODIFY
+ 
+An Add of either Bid or Ask, should show the appropriate quantity in the bid or order size
+column of the appropriate price row. Similarly modifying a qty at a certain bid price or ask price
+should show the new quanyity at that location. Deleting a bid or ask price should clear out the 
+bid or ask quantity from that column.
+ 
+ 
+The order messages have the following format:
+ 
+ 
+ORDER:IBM:ADD:BID:100:11
+ORDER:IBM:DELETE:ASK:102:0
+ORDER:IBM:MODIFY:BID:100:13
+ 
+Order should be show in the corresponding price row and column. Deleting an order
+Should clear out that cell.
+ 
+When a new price or order updates a cell, flash that cell with color (your choice of color) for a second.
+ 
