@@ -1,0 +1,121 @@
+﻿<Window x:Class="MarketDisplayGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:this="clr-namespace:MarketDisplayGUI"
+        Title="MainWindow" Height="800" Width="525"
+        Closing="Window_Closing_1">
+    <DockPanel>
+
+        <DataGrid Name="marketViewDataGrid" 
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="True"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="False">
+
+            <DataGrid.Resources>
+                <this:ChangedTimeToBackgroundConverter x:Key="backgroundConverter" />
+                <this:ChangedTimeToForegroundConverter x:Key="foregroundConverter" />
+
+                <Style x:Key="baseColumnStyle">
+                    <Setter Property="TextBlock.TextAlignment" Value="Right"/>
+                    <Setter Property="TextBlock.Padding" Value="5,1,5,1"/>
+                    <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+                </Style>
+
+
+                <SolidColorBrush Color="White" x:Key="bidSizeForeground" />
+                <SolidColorBrush Color="Blue" x:Key="bidSizeBackground" />
+
+                <SolidColorBrush Color="White" x:Key="priceForeground" />
+                <SolidColorBrush Color="DarkGray" x:Key="priceBackground" />
+
+                <SolidColorBrush Color="Black" x:Key="askSizeForeground" />
+                <SolidColorBrush Color="Red" x:Key="askSizeBackground" />
+
+                <SolidColorBrush Color="Black" x:Key="ordersForeground" />
+                <SolidColorBrush Color="Tan" x:Key="ordersBackground" />
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="BidOrders">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BidOrders, Mode=OneWay, StringFormat='0;-0; '}" 
+                                       Style="{StaticResource ResourceKey=baseColumnStyle}"
+                                       Foreground="{Binding BidOrders_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=foregroundConverter}, ConverterParameter={StaticResource ResourceKey=ordersForeground}}"
+                                       Background="{Binding BidOrders_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=backgroundConverter}, ConverterParameter={StaticResource ResourceKey=ordersBackground}}"
+                                       />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn Header="BidSize" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BidSize, Mode=OneWay, StringFormat='0;-0; '}" 
+                                        Style="{StaticResource ResourceKey=baseColumnStyle}"
+                                        Foreground="{Binding BidSize_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=foregroundConverter}, ConverterParameter={StaticResource ResourceKey=bidSizeForeground}}"
+                                        Background="{Binding BidSize_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=backgroundConverter}, ConverterParameter={StaticResource ResourceKey=bidSizeBackground}}"
+                                        />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Symbol">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Symbol, Mode=OneTime}"
+                                       Style="{StaticResource ResourceKey=baseColumnStyle}"
+                                       Foreground="{StaticResource ResourceKey=priceForeground}"
+                                       Background="{StaticResource ResourceKey=priceBackground}"
+                                       />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Price" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Price, Mode=OneTime, StringFormat='0;-0; '}" 
+                                       Style="{StaticResource ResourceKey=baseColumnStyle}" 
+                                       Foreground="{StaticResource ResourceKey=priceForeground}"
+                                       Background="{StaticResource ResourceKey=priceBackground}"
+                                       />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="AskSize" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding AskSize, Mode=OneWay, StringFormat='0;-0; '}" 
+                                       Style="{StaticResource ResourceKey=baseColumnStyle}"
+                                       Foreground="{Binding AskSize_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=foregroundConverter}, ConverterParameter={StaticResource ResourceKey=askSizeForeground}}"
+                                       Background="{Binding AskSize_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=backgroundConverter}, ConverterParameter={StaticResource ResourceKey=askSizeBackground}}"
+                                       />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="AskOrders" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding AskOrders, Mode=OneWay, StringFormat='0;-0; '}" 
+                                       Style="{StaticResource ResourceKey=baseColumnStyle}" 
+                                       Foreground="{Binding AskOrders_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=foregroundConverter}, ConverterParameter={StaticResource ResourceKey=ordersForeground}}"
+                                       Background="{Binding AskOrders_ChangedTime, Mode=OneWay, Converter={StaticResource ResourceKey=backgroundConverter}, ConverterParameter={StaticResource ResourceKey=ordersBackground}}"
+                                       />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+</Window>
+    

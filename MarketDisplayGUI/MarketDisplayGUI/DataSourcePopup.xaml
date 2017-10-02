@@ -1,0 +1,21 @@
+﻿<Window x:Class="MarketDisplayGUI.DataSourcePopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Market Display GUI - Data Feed Settings" Height="200" Width="200">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Listener IP"/>
+            <TextBox Text="{Binding ListenerIpAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="100"/>            
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Listener Port"/>
+            <TextBox Text="{Binding ListenerPort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+        </StackPanel>
+
+        <CheckBox IsChecked="{Binding UseInternalTestFeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Use Internal Test Feed</CheckBox>
+
+        <Button Margin="5,5,5,5" Click="Button_Click_1">Go!</Button>
+
+    </StackPanel>
+</Window>
