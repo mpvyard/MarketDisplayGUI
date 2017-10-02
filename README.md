@@ -1,0 +1,2 @@
+_Repo/Code notes:_
+__This is a coding project I wrote for a trading firm back in 2015 as part of the interview process. It demonstrates subscribing to a real-time feed to receive market price updates for a handful of option strikes and display them in a straightfoward WPF GUI. Nothing particularly complicated, just a common scenario in many trading firms.
